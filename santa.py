@@ -2,7 +2,8 @@ import random
 import smtplib
 import argparse
 import json
-
+import logging
+from datetime import datetime
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 
@@ -46,6 +47,12 @@ parser.add_argument('--debug', action='store_true', help='Dont send email and pr
 args = parser.parse_args()
 
 with open(args.config, 'r') as f:
+    logger = logging.getLogger('secretsanta')
+    hdlr = logging.FileHandler('assignment-{}.log'\
+                               .format(datetime.now().isoformat()))
+    logger.addHandler(hdlr)
+    logger.setLevel(logging.INFO)
+
     cfg = json.load(f)
     santas = cfg['santas']
     from_addr = cfg['from']
@@ -64,6 +71,7 @@ with open(args.config, 'r') as f:
         msg['To'] = match[0][1]
         msg['Subject'] = "Secret Santa Assignment"
         msg.attach(MIMEText(body, 'plain'))
+        logger.info(body)
         if args.debug:
             print(body)
         else:
