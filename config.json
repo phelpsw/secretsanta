@@ -1,0 +1,7 @@
+{
+    "santas": [
+        ["User 1", "test1@test.com"],
+        ["User 2", "test2@test.com"]
+    ],
+    "from": "foo@test.com"
+}
