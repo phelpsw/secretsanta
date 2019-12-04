@@ -4,8 +4,7 @@ import argparse
 import json
 import logging
 from datetime import datetime
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
+from email.message import EmailMessage
 
 def pick_non_matching(santa, remaining):
 
@@ -66,11 +65,11 @@ with open(args.config, 'r') as f:
         body = 'Hi {}, you are the secret santa for {}.'\
                 .format(match[0][0], match[1][0])
 
-        msg = MIMEMultipart()
+        msg = EmailMessage()
         msg['From'] = from_addr
         msg['To'] = match[0][1]
         msg['Subject'] = "Secret Santa Assignment"
-        msg.attach(MIMEText(body, 'plain'))
+        msg.set_content(body)
         logger.info(body)
         if args.debug:
             print(body)
