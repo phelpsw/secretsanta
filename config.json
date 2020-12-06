@@ -1,7 +1,18 @@
-{
-    "santas": [
-        ["User 1", "test1@test.com"],
-        ["User 2", "test2@test.com"]
-    ],
-    "from": "foo@test.com"
-}
+[
+    {
+        "name": "User 1",
+        "email": "test1@williamslabs.com"
+    },
+    {
+        "name": "User 2",
+        "email": "test2@williamslabs.com"
+    },
+    {
+        "name": "User 3",
+        "email": "test3@williamslabs.com"
+    },
+    {
+        "name": "User 4",
+        "email": "test4@williamslabs.com"
+    }
+]
